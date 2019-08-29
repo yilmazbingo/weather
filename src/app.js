@@ -5,6 +5,8 @@ const hbs = require("hbs");
 const geocode = require("./utils/geocode.js");
 const forecast = require("./utils/forecast");
 
+const port = process.env.PORT || 3000;
+
 //set up static directory
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -92,6 +94,8 @@ app.get("*", (req, res) => {
   res.render("404", { errorMessage: "404 Page Not Found " });
 });
 
-app.listen(5000, () => {
-  console.log("listening");
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });
+
+console.log("yilmaz");
