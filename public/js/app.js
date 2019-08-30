@@ -1,12 +1,3 @@
-fetch("http://localhost/weather?adress=boston")
-  .catch(e => {
-    console.log(e);
-  })
-  .then(data => {
-    console.log(data.location);
-    console.log(data.forecast);
-  });
-
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
 const messageOne = document.getElementById("message-1");
@@ -17,12 +8,15 @@ weatherForm.addEventListener("submit", e => {
   const location = search.value;
   messageOne.textContent = "loading";
   messageTwo.textContent = "";
-  fetch(`/weather?address=${location}`)
-    .catch(e => {
-      messageTwo.textContent = e.message;
-    })
+  fetch(`http://localhost:3000/weather?address=${location}`)
     .then(data => {
+      console.log("yilmaz");
+      console.log((messageTwo.textContent = data.forecast));
       messageOne.textContent = data.location;
       messageTwo.textContent = data.forecast;
+    })
+    .catch(e => {
+      console.log(e);
+      messageTwo.textContent = e.message;
     });
 });
